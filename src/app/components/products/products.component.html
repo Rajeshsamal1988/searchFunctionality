@@ -1,0 +1,29 @@
+
+  <div class="container">
+<div class="search my-2 " >
+  <div class="search">
+    <input type="search" [(ngModel)]="searchtext" id="form1" class="form-control" placeholder="search..."/>
+
+</div>
+</div>
+
+  <div class="row">
+    <div class="col-4"  *ngFor="let pro of product | search:searchtext">
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0" >
+     
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{ pro.title}}</h5>
+          <p class="card-text">{{pro.description}}</p>
+          <p><strong>Price:</strong> ${{ pro.price }}</p>
+
+          <a [routerLink]="['/product', pro.id]">View Details</a>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
