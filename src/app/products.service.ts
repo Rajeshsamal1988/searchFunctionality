@@ -8,19 +8,30 @@ export class ProductsService {
   private url = 'https://mocki.io/v1/5a052eb1-bf45-4010-b6fb-9f7c8b7ac0af'; 
 
   constructor(private _http: HttpClient) { }
-  
+//get all products
   getProducts(): Observable<any> {
     return this._http.get<any>(this.url);
   }
 
-  // getProductById(id:number): Observable<any> {
-  //   return this._http.get<any>(`${this.url}/${id}`)
-  // }
-  getProductById(id: any): Observable<any> {
+ //get a particular product
+  // getProductById(id: any): Observable<any> {
     
-    return this._http.get<any[]>(this.url).pipe(
-      map(products => products.find(product => product.id === id))
-    );
+  //   return this._http.get<any[]>(this.url).pipe(
+  //     map(products => products.find(product => product.id === id))
+  //   );
+  // }
+  getProductById(id: number): Observable<any> {
+    return this._http.get<any>(`${this.url}/${id}`);
   }
- 
+  // getProductById(id: any): Observable<any> {
+  //   return this._http.get(`${this.url}/${id}`)
+  // }
+  
+}
+export interface Product {
+  id: number;
+  // name: string;
+  // category: string;
+  // price: number;
+  // description: string;
 }

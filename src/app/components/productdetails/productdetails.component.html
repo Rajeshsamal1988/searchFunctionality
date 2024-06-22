@@ -1,1 +1,12 @@
-<p>productdetails works!</p>
+<div *ngIf="product; else loading">
+    <h1>{{ product.id }}</h1>
+    
+   
+  </div>
+  
+  <ng-template #loading>
+    <p *ngIf="errorMessage; else spinner">{{ errorMessage }}</p>
+    <ng-template #spinner>
+      <p>Loading product details...</p>
+    </ng-template>
+  </ng-template>
