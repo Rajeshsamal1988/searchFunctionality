@@ -14,24 +14,8 @@ export class ProductsService {
   }
 
  //get a particular product
-  // getProductById(id: any): Observable<any> {
-    
-  //   return this._http.get<any[]>(this.url).pipe(
-  //     map(products => products.find(product => product.id === id))
-  //   );
-  // }
-  getProductById(id: number): Observable<any> {
-    return this._http.get<any>(`${this.url}/${id}`);
-  }
-  // getProductById(id: any): Observable<any> {
-  //   return this._http.get(`${this.url}/${id}`)
-  // }
-  
-}
-export interface Product {
-  id: number;
-  // name: string;
-  // category: string;
-  // price: number;
-  // description: string;
+//  getProductById(id: string){
+//   return this._http.get<any>(this.url);
+// }
+
 }

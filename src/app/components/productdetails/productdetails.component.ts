@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductsService ,Product} from '../../products.service';
+import { ProductsService } from '../../products.service';
 import { CommonModule } from '@angular/common';
 
 
@@ -13,33 +13,26 @@ import { CommonModule } from '@angular/common';
   styleUrl: './productdetails.component.css'
 })
 export class ProductdetailsComponent implements OnInit {
-  // product: any;
-  productsIdList:any;
+  products: any[] = [];
+  filteredProduct: any;
+  productId:any;
+  product: any;
+ 
+ 
 
-  product: Product | undefined;
-  productId: number | null = null;
-  errorMessage: string = '';
-
-  constructor(private route: ActivatedRoute,
-    private productService:ProductsService
-   ){}
+  constructor(private route: ActivatedRoute,private productService:ProductsService){}
   ngOnInit(): void {
-  
-this.route.paramMap.subscribe(params => {
-  const id = params.get('id');
-  if (id) {
-    this.productId = +id;
-    this.fetchProduct();
-  }
-});
-  }
-  fetchProduct(): void {
-    if (this.productId !== null) {
-      this.productService.getProductById(this.productId).subscribe({
-        next: (data) => this.product = data,
-        error: (error) => this.errorMessage = 'Could not fetch product details'
-      });
-      console.log(this.product)
-    }
-  }
-  }
+    let productId = this.route.snapshot.params['id'];
+    console.log("id",productId);
+
+   this.productService.getProducts().forEach(product => {
+    this.product=product;
+    const result = this.product.filter((x:any) => x.id === this.productId);
+    return result;
+
+
+})
+// console.log("res",this.result)
+
+ 
+  }}
