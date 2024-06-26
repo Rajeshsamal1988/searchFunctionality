@@ -13,26 +13,42 @@ import { CommonModule } from '@angular/common';
   styleUrl: './productdetails.component.css'
 })
 export class ProductdetailsComponent implements OnInit {
-  products: any[] = [];
+  product: any[] = [];
   filteredProduct: any;
-  productId:any;
-  product: any;
+  
+   productId =parseInt( this.route.snapshot.params['id']);
+  // productId:any;
+  // product: any;
  
  
 
-  constructor(private route: ActivatedRoute,private productService:ProductsService){}
+  constructor(private route: ActivatedRoute,private router: Router,private productService:ProductsService){}
   ngOnInit(): void {
-    let productId = this.route.snapshot.params['id'];
-    console.log("id",productId);
+   this.getProducts()
+   
+  }
+  getProducts(){
+   this.productService.getProducts().subscribe(response => {
+      this.product = response;
+       // const productId = this.route.snapshot.params['id'];
+       // this.productService.getProducts().forEach(product => {
+         // this.product=product;
+      
+     
+      this.filterProductById(this.productId);
+      
+     });
+   
+  
+  }
+  filterProductById(id: any): void {
+    console.log(" this.product",this.product)
+    console.log("productId",typeof(this.productId))
+    this.filteredProduct = this.product.filter(products => products.id === this.productId);
 
-   this.productService.getProducts().forEach(product => {
-    this.product=product;
-    const result = this.product.filter((x:any) => x.id === this.productId);
-    return result;
+  console.log(this.filteredProduct)
 
-
-})
-// console.log("res",this.result)
-
+  }
  
-  }}
+}
+  

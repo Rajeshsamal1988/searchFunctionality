@@ -1,0 +1,61 @@
+<!-- <div>
+    <h2>Filtered Product</h2>
+    <div *ngFor="let pro of filteredProduct">
+      <p>ID: {{ pro.id }}</p>
+      <p>Name: {{ pro.name }}</p>
+      <p>Price: {{ pro.price }}</p>
+    </div>
+   
+  </div> -->
+  <div class="container mt-5">
+  <section id="product-info"  *ngFor="let pro of filteredProduct">
+
+    <div class="item-image-parent">
+        <div class="item-list-vertical">
+            <div class="thumb-box" *ngFor="let img of pro.images">
+                <img src={{img}} alt="thumbnail" />
+            </div>
+           
+
+        </div>
+        <div class="item-image-main">
+            <img src={{pro.thumbnail}} alt="default" />
+            <div class="main-info mt-3" >
+                <h4 >{{pro.title}}</h4>
+                <div class="star-rating">
+                  {{pro.availabilityStatus}}            
+                </div>
+                <p>Price: <span id="price">{{pro.price}}</span></p>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="item-info-parent">
+        <!-- main info -->
+        
+        <!-- Choose -->
+        <div class="select-items">
+        
+
+            <div class="description">
+                <label><b>Description:</b></label><br>
+              <p>{{pro.description}}</p> 
+            </div>
+        </div>
+        <div class="review" >
+            <label><b>Reviews:</b></label><br>
+          
+          <ul *ngFor="let review of pro.reviews">
+            <li><b>rating: </b>{{review.rating}}</li>
+            <li><b>comment: </b>{{review.comment}}</li>
+            <li><b>reviewerName: </b>{{review.reviewerName}}</li>
+            <li><b>reviewerEmail: </b>{{review.reviewerEmail}}</li>
+          </ul>
+        </div>
+       
+    
+        <!-- Description -->
+    </div>
+</section>
+</div>

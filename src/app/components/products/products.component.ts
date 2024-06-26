@@ -19,8 +19,7 @@ export class ProductsComponent implements OnInit {
 
   product: any;
   searchtext:any;
-  filteredProduct: any;
-  idToFilter: string = '1';  // replace with the actual ID you want to filter
+ 
 
   constructor(private productService: ProductsService){}
  ngOnInit(): void {
